@@ -15,3 +15,9 @@ paragraph = """Just creating a small function.
 It is so because I am bored.
 I don't know what to fill here too."""
 print(boxify(paragraph))
+
+print('Setting a fixed width for a paragraph.')
+paragraph = """Just creating a small function.
+It is so because I am bored.
+I don't know what to fill here too."""
+print(boxify(paragraph, width=80))
