@@ -1,4 +1,4 @@
-from boxify import boxify
+from src.boxify import boxify
 
 print('Single line, word.')
 print(boxify('Hello!'))
@@ -21,3 +21,9 @@ paragraph = """Just creating a small function.
 It is so because I am bored.
 I don't know what to fill here too."""
 print(boxify(paragraph, width=80))
+
+print('Setting a fixed width for a paragraph.')
+paragraph = """Just creating a small function.
+It is so because I am bored.
+I don't know what to fill here too."""
+print(boxify(paragraph, width=80, align="centre"))
