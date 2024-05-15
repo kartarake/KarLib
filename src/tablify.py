@@ -8,6 +8,7 @@ class stats:
         self.maxcharmap = self.getmaxcharmap(self.tiltedgrid)
         self.width = 1 + len(self.tiltedgrid) * 3 + sum([self.maxcharmap[key] for key in self.maxcharmap])
 
+        self.alignmap = self.getalignmap(grid)
         self.widthmap = self.getwidthmap(grid)
 
     def getmaxcharmap(self, tiltedgrid):
@@ -46,10 +47,30 @@ class stats:
             
             i += 1
         return widthmap
+    
+    def getalignmap(self, grid):
+        alignmap = {}
+        header = grid[0]
+        i = 0
+        for item in header:
+            if type(item) == dict and "align" in item:
+                alignmap[i] = item["align"]
+            else:
+                alignmap[i] = "left"
+            i += 1
+        return alignmap
+                
 
     def fillspace(self, length, string):
         got = len(string)
         return " "*(length - got)
+    
+    def centerstring(self, length, string):
+        got = len(string)
+        need = length - got
+        first = math.floor(need/2)
+        second = math.ceil(need/2)
+        return " " * first + string + " " * second
     
     def tiltgrid(self, grid):
         tiltedgrid = [[] for i in range(len(grid))]
@@ -97,7 +118,18 @@ def tablify(grid):
 
     header = []; i = 0
     for item in grid[0]:
-        string = item + stat.fillspace(stat.widthmap[i], item)
+        if stat.alignmap[i] == "left":
+            string = item + stat.fillspace(stat.widthmap[i], item)
+
+        elif stat.alignmap[i] in ("centre", "center"):
+            string = stat.centerstring(stat.widthmap[i], item)
+
+        elif stat.alignmap[i] == "right":
+            string = stat.fillspace(stat.widthmap[i], item) + item
+
+        else:
+            raise ValueError(f"Invalid alignment mode < {stat.widthmap[i]} > has been passed")
+        
         header.append(string)
         i += 1
     header = ' | '.join(header)
@@ -111,7 +143,18 @@ def tablify(grid):
 
         belt = [] ; i = 0
         for item in row:
-            string = item + stat.fillspace(stat.widthmap[i], item)
+            if stat.alignmap[i] == "left":
+                string = item + stat.fillspace(stat.widthmap[i], item)
+
+            elif stat.alignmap[i] in ("centre", "center"):
+                string = stat.centerstring(stat.widthmap[i], item)
+
+            elif stat.alignmap[i] == "right":
+                string = stat.fillspace(stat.widthmap[i], item) + item
+
+            else:
+                raise ValueError(f"Invalid alignment mode < {stat.widthmap[i]} > has been passed")
+            
             belt.append(string)
             i += 1
         string = ' | '.join(belt)
