@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 PyCLutils.code-workspace
 PyStringUtils.code-workspace
+KarLib.code-workspace
