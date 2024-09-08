@@ -1,13 +1,15 @@
 # 📒 KarLib
 
 This is an open source python library of useful utilities that simplify everyday coding task.
-   
+
 
 ## 📜 Table of Contents
 
-- [Installation](#installation)
-- [Contributing](#contributing)
-   
+- [Installation](#-installation)
+- [Usage/Examples](#-usageexamples)
+- [Contributing](#-contributing)
+- [License](#-license)
+
 
 ## ⬇️ Installation
 
@@ -15,12 +17,11 @@ Install this project using pypi package manager.
 ```bash
 $ pip install karlib
 ```
-   
 
 ## 🪴 Usage/Examples
 
 See wiki for all usage examples.
-   
+
 
 ## 🙋 Contributing
 
@@ -31,8 +32,8 @@ Contributing towards this repo is open heartedly welcomed. Please make sure to a
 3. Make your changes.
 4. Push your branch: `git push origin feature-name`.
 5. Create a pull request.
-   
-   
+
+
 ## 📃 License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
