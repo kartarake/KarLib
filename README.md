@@ -1,9 +1,9 @@
-# 📒 KarLib
+# KarLib
 
 This is an open source python library of useful utilities that simplify everyday coding task.
 
 
-## 📜 Table of Contents
+## Table of Contents
 
 - [Installation](#-installation)
 - [Usage/Examples](#-usageexamples)
@@ -11,19 +11,19 @@ This is an open source python library of useful utilities that simplify everyday
 - [License](#-license)
 
 
-## ⬇️ Installation
+## Installation
 
 Install this project using pypi package manager.
 ```bash
 $ pip install karlib
 ```
 
-## 🪴 Usage/Examples
+## Usage/Examples
 
 See wiki for all usage examples.
 
 
-## 🙋 Contributing
+## Contributing
 
 Contributing towards this repo is open heartedly welcomed. Please make sure to add comments wherever needed to provide some clarity. Any type of code which damages other's properties will not be tolerated.
 
@@ -34,7 +34,7 @@ Contributing towards this repo is open heartedly welcomed. Please make sure to a
 5. Create a pull request.
 
 
-## 📃 License
+## License
 
 [![MIT License](https://img.shields.io/badge/License-MIT-green.svg)](https://choosealicense.com/licenses/mit/)
 
