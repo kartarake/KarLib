@@ -1,12 +1,37 @@
 import time
 from decimal import Decimal
 
-def dectimer(func) -> Decimal:
-    """This is a decorator which is used to calculate the time taken by a function.
+def timer(func) -> Decimal:
+    """This is a function which is used to calculate the time taken by a function.
     It returns time in seconds represented by Decimal datatype.
 
     Args:
         func (function): The function you want to calculate the time for.
+
+    Returns:
+        Decimal: The time taken by the function in seconds.
+    """
+    start = Decimal(time.perf_counter())
+    func()
+    end = Decimal(time.perf_counter())
+    return end - start
+
+def ptimer(func) -> None:
+    """This is a function which is used to calculate the time taken by a function.
+    It prints the time in seconds represented by Decimal datatype.
+
+    Args:
+        func (function): The function you want to calculate the time for.
+    """
+    start = Decimal(time.perf_counter())
+    func()
+    end = Decimal(time.perf_counter())
+    time_taken = str(end - start).strip("Decimal()")
+    print(f"Time taken : {time_taken}s")
+
+def dectimer(func) -> Decimal:
+    """This is a decorator which is used to calculate the time taken by a function.
+    It returns time in seconds represented by Decimal datatype.
 
     Returns:
         Decimal: The time taken by the function in seconds.
@@ -18,12 +43,9 @@ def dectimer(func) -> Decimal:
         return end - start
     return wrapper
 
-def decptimer(func) -> Decimal:
+def decptimer(func) -> None:
     """This is a decorator which is used to calculate the time taken by a function.
     It prints the time in seconds represented by Decimal datatype.
-
-    Args:
-        func (function): The function you want to calculate the time for.
     """   
     def wrapper():
         start = Decimal(time.perf_counter())
