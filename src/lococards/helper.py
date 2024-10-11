@@ -54,3 +54,7 @@ def structurepath(folder, name, splits=1) -> list[str]:
             paths.append(os.path.join(folder, f"{name}_{i}.json"))
     
     return paths
+
+def makepaths(paths) -> None:
+    for path in paths:
+        save_json(path, None)

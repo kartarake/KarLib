@@ -6,7 +6,7 @@ import time
 from .helper import *
 from .exceptions import *
 
-class JSONtrain:
+class JSONcard:
     def __init__(self, path, password=None) -> None:
         self.path = path
         self.registry_path = os.path.join(path, "locojson.registry")
@@ -24,10 +24,13 @@ class JSONtrain:
         if name in self.registry:
             raise compartmentAlreadyExists(f"Compartment {name} already exists")
         
+        paths = structurepath(self.path, name, splits)
+        makepaths(paths)
+        
         self.registry[name] = {
             "time_created":time.ctime(),
             "splits":splits,
-            "path":structurepath(self.path, name, splits)
+            "path": paths
         }
 
         saveregistry(self.registry_path, self.registry)
@@ -38,5 +41,12 @@ class JSONtrain:
         if name not in self.registry:
             raise compartmentDoesNotExist(f"Compartment {name} does not exist")
         
-        self.data = load_json(self.registry[name]["path"])
+        compartment_registry = self.registry[name]
+        if compartment_registry["splits"] == 1:
+            self.data = load_json(compartment_registry["path"][0])
+        else:
+            self.data.clear()
+            for path in compartment_registry["path"]:
+                self.data.update(load_json(path))
+
         self.current = name
