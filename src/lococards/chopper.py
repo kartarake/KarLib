@@ -1,31 +1,23 @@
-from ..pystack import pystack
+def analysebranch(branch:dict):
+    branchresult = {"weight":0, "sub-branches":{}}
+    counter = 0
 
-def analysebranch(branch:dict, result:dict, keystack:pystack):
-    branchresult = {}
     for key in branch:
-        keystack.push(key)
-        count = 0
-
-        if type(branch[key]) == dict:
-            subresult = analysebranch(branch[key], result, keystack)
-
-        elif type(branch[key]) in (list, tuple, set):
-            subresult = {"depth":len(branch[key])}
+        if type(branch[key]) in (dict, list, tuple, set):
+            subresult = analysebranch(branch[key])
         
         else:
-            subresult = {"depth":1}
+            subresult = {"weigth": 1}
 
-        if subresult:
-            keys = keystack.data
-            indexstring = "".join([f"[{key}]" for key in keys])
-            eval(f"result{indexstring}") = subresult
+        branchresult["sub-branches"][key] = subresult
+        counter += 1
 
-        count += 1
-        keystack.pop()
+    branchresult["weigth"] = counter
+    return branchresult
+
 
 def analyse(dictionary:dict):
-    result = {}
-    keystack = pystack()      
+    analysis_graph = analysebranch(dictionary)  
 
 
 def chop(dictionary, n):
