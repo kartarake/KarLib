@@ -20,7 +20,7 @@ class JSONcard:
         self.current = None
         self.data = None
 
-    def newCompartment(self, name, splits=1) -> None:
+    def newCard(self, name, splits=1) -> None:
         if name in self.registry:
             raise compartmentAlreadyExists(f"Compartment {name} already exists")
         
@@ -37,7 +37,7 @@ class JSONcard:
         self.current = name
         self.data = None
 
-    def changeCompartment(self, name) -> None:
+    def changeCard(self, name) -> None:
         if name not in self.registry:
             raise compartmentDoesNotExist(f"Compartment {name} does not exist")
         
