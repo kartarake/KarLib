@@ -8,10 +8,17 @@ class pystack:
 
     def pop(self):
         if len(self.data) == 0:
-            raise IndexError("Stack is empty")
+            raise IndexError("Underflow")
         return self.data.pop()
     
     def peek(self):
         if len(self.data) == 0:
-            raise IndexError("Stack is empty")
+            raise IndexError("Underflow")
         return self.data[-1]
+    
+    def popmany(self, n):
+        if n == "*":
+            n = len(self.data)     
+        if len(self.data) < n:
+            raise IndexError("Underflow")
+        return [self.pop() for i in range(n)]
