@@ -1,24 +1,35 @@
-def analysebranch(branch:dict):
-    branchresult = {"weight":0, "sub-branches":{}}
+from ..pystack import pystack
+
+def analysedict(dictionary:dict) -> dict:
+    result = {"weight":0, "sub-branches":{}}
     counter = 0
 
-    for key in branch:
-        if type(branch[key]) in (dict, list, tuple, set):
-            subresult = analysebranch(branch[key])
+    for key in dictionary:
+        if type(dictionary[key]) in (dict, list, tuple, set):
+            subresult = analysedict(dictionary[key])
         
         else:
             subresult = {"weigth": 1}
 
-        branchresult["sub-branches"][key] = subresult
+        result["sub-branches"][key] = subresult
+        counter += subresult["weigth"]
         counter += 1
 
-    branchresult["weigth"] = counter
-    return branchresult
+    result["weigth"] = counter
+    return result
 
+def totalweight(analysis:dict) -> int:
+    var = 0
+    for key in analysis["sub-branches"]:
+        var += analysis["sub-branches"][key]["weigth"]
+    return var
 
-def analyse(dictionary:dict):
-    analysis_graph = analysebranch(dictionary)  
+def chopdict(d:dict, n:int) -> list:
+    analysis = analysedict(d)
+    total_weight = totalweight(analysis)
 
+    each_split_weight = total_weight // n
+    each_split_weight_now = [0 for i in range(n)]
 
-def chop(dictionary, n):
-    pass
+    for key in d:
+        if 
