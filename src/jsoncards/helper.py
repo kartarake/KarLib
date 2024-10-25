@@ -15,7 +15,7 @@ def islocojsonhere(path) -> bool:
 
 def marklocojsonhere(path) -> None:
     if islocojsonhere(path):
-        raise locojsonAlreadyExists("locojson already exists")
+        raise jsoncardsAlreadyExists("locojson already exists")
     
     with open(os.path.join(path, "locojson.mark"), "w") as f:
         version = fetchlocojsonver()

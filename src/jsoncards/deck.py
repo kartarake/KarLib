@@ -1,4 +1,4 @@
-# locoJSON v0.0.0
+# JSONcards v0.0.0
 
 import json
 import time
