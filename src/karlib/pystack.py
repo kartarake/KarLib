@@ -1,3 +1,4 @@
+"""Simple stack implementation"""
 class pystack:
     def __init__(self, import_data = []) -> None:
         self.data = []

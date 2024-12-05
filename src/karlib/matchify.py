@@ -52,7 +52,16 @@ def similarity(string1, string2):
     constant *= possimilarity(string1, string2)
     return constant
     
-def matchify(iterable, string):
+def matchify(iterable:list|tuple, string:str) -> str:
+    """Returns the string from the iterable sequence which is most similar to the string.
+
+    Args:
+        iterable (list | tuple): The list of strings that you want to compare.
+        string (str): The string that you want to compare.
+
+    Returns:
+        str: The string from the iterable sequence which is most similar to the string.
+    """    
     consmap = {}
     for reference in iterable:
         wordsimilarity = similarity(string, reference)

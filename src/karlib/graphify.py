@@ -3,7 +3,19 @@ def valuediff(ypos,i):
         return 0
     return ypos[i] - ypos[i+1]
 
-def graphify(values):
+def graphify(values:list|tuple) -> str:
+    """Creates a string representing a graph of the given plots. Only supports continues plots.
+    Plot value example: [(x1,y1), (x2,y2), (x3,y3), ...]
+
+    Args:
+        values (list | tuple): The values of plots in a list.
+
+    Raises:
+        ValueError: If the graph range is zero.
+
+    Returns:
+        str: The string representing the graph
+    """    
     if values is None or len(values) == 0:
         raise ValueError("values must not be null or empty")
 
